@@ -60,6 +60,7 @@ The following resources are provisioned:
 
 - S3 bucket for ALB access logs
 - CloudWatch logs for ECS Tasks
+
 ---
 
 ## GitHub Actions Workflow
@@ -80,6 +81,7 @@ The following resources are provisioned:
 
 - ALB routes HTTPS traffic to ECS task on port 9000
 
+---
 
 ## Docker 
 
