@@ -400,7 +400,7 @@ resource "aws_ecs_task_definition" "medusa_server" {
   container_definitions = jsonencode([
     {
       name      = "medusa-server",
-      image = "612443913962.dkr.ecr.us-east-1.amazonaws.com/projects:medusa-backend-v1", #My image
+      image = "612443913962.dkr.ecr.us-east-1.amazonaws.com/projects/medusa-backend:latest", #My image in ECR
       essential = true,
       portMappings = [
         {
@@ -440,7 +440,7 @@ resource "aws_ecs_task_definition" "medusa_worker" {
   container_definitions = jsonencode([
     {
       name      = "medusa-worker",
-      image = "612443913962.dkr.ecr.us-east-1.amazonaws.com/projects:medusa-backend-v1", #My image
+      image = "612443913962.dkr.ecr.us-east-1.amazonaws.com/projects/medusa-backend:latest", #My image in ECR
       essential = true,
       portMappings = [
         {
