@@ -1,0 +1,51 @@
+services:
+  medusa-server:
+    image: kbalaji2212/projects:medusa-backend-v1
+    ports:
+      - "9000:9000"
+    environment:
+      - COOKIE_SECRET=supersecret
+      - JWT_SECRET=supersecret
+      - MEDUSA_WORKER_MODE=server
+      - DISABLE_MEDUSA_ADMIN=false
+      - DATABASE_URL=postgres://admin:admin@postgres:5432/medusa?ssl_mode=disable
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - medusa-network
+  medusa-worker:
+    image: kbalaji2212/projects:medusa-backend-v1
+    ports:
+      - "9000"
+    environment:
+      - COOKIE_SECRET=supersecret
+      - JWT_SECRET=supersecret
+      - MEDUSA_WORKER_MODE=worker
+      - DISABLE_MEDUSA_ADMIN=true
+      - DATABASE_URL=postgres://admin:admin@postgres:5432/medusa?ssl_mode=disable
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - medusa-network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=medusa
+    networks:
+      - medusa-network
+
+  redis:
+    image: redis:latest
+    networks:
+      - medusa-network
+
+networks:
+  medusa-network:
+    driver: bridge
