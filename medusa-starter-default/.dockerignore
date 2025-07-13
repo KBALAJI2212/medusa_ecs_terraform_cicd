@@ -1,0 +1,37 @@
+# Ignore node_modules and build output
+node_modules
+.medusa
+.mermaid-cache
+.cache
+dist
+
+# Ignore config, env, local dev files
+.env*
+.vscode
+*.local
+*.log
+*.sqlite
+*.db
+
+# Ignore git and docs
+.git
+.github
+*.md
+
+# Ignore test and tooling
+integration-tests/
+test/
+coverage/
+jest.config.js
+instrumentation.ts
+
+# Ignore package managers' files
+.yarn
+.yarnrc.yml
+pnpm-lock.yaml
+package-lock.json 
+
+# Docker-related
+Dockerfile
+docker-compose.yml
+docker-compose*.yml
